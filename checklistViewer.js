@@ -97,6 +97,7 @@ export class ChecklistBuilder{
         this.container = document.getElementById(this.elementId)
         this._error = false
         this.title = 'Checklist'
+        this.methodBound = this.onClickHandler.bind(this);
         if(!this.container){
             this._error = true
             console.error('Error: (ChecklistBuilder) Not found root element')
@@ -156,11 +157,11 @@ export class ChecklistBuilder{
     }
 
     initListener(){
-        this.container.addEventListener('click', this.onClickHandler)
+        this.container.addEventListener('click', this.methodBound)
     }
 
     destroyListener(){
-        this.container.removeEventListener('click', this.onClickHandler)
+        this.container.removeEventListener('click', this.methodBound)
     }
 
     onClickHandler(event) {
